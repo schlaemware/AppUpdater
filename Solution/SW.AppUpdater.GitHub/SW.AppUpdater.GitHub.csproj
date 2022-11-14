@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="Octokit" Version="4.0.1" />
+    <PackageReference Include="SW.Framework" Version="0.0.1" />
   </ItemGroup>
 
   <ItemGroup>
