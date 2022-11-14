@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>AppUpdater.GitHub</Title>
+    <Version>0.0.0</Version>
+    <Company>Schlæmware</Company>
+    <Product>AppUpdater.GitHub</Product>
+    <Authors>MSC</Authors>
+    <Description>AppUpdater.GitHub</Description>
+    <Copyright>Copyright © by Schlæmware</Copyright>
+    <PackageProjectUrl>https://github.com/schlaemware/AppUpdater</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/schlaemware/AppUpdater</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Schlæmware;SW;Framework;Update;GitHub</PackageTags>
+    <PackageReleaseNotes>Initialize project.</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Octokit" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SW.AppUpdater.Abstractions\SW.AppUpdater.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

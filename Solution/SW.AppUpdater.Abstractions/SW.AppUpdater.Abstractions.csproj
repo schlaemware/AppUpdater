@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>AppUpdater</Title>
+    <Version>0.0.0</Version>
+    <Authors>MSC</Authors>
+    <Company>Schlæmware</Company>
+    <Product>AppUpdater</Product>
+    <Description>AppUpdater</Description>
+    <Copyright>Copyright © by Schlæmware</Copyright>
+    <PackageProjectUrl>https://github.com/schlaemware/AppUpdater</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/schlaemware/AppUpdater</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Schlæmware;SW;Framework;Update</PackageTags>
+    <PackageReleaseNotes>Initialize project.</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
