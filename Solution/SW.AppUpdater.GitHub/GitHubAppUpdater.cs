@@ -1,8 +1,9 @@
 ﻿using Octokit;
 using SW.AppUpdater.Abstractions.Contracts;
+using SW.Framework.Extensions;
 
 namespace SW.AppUpdater.GitHub {
-  public class GitHubAppUpdater : IAppUpdater {
+  public class GitHubAppUpdater: IAppUpdater {
     public event EventHandler<Abstractions.Models.Release>? ReleaseFound;
 
     public async void CheckForUpdates(string organization, string application, Version? installedVersion = null, bool includePreReleases = false) {
@@ -14,13 +15,31 @@ namespace SW.AppUpdater.GitHub {
 
         foreach (Release release in releases) {
           RaiseReleaseFound(new Abstractions.Models.Release() {
-            Name = release.Name,
-            Version = Version.Parse(release.TagName),
-            IsPreRelease = release.Prerelease,
             HasInstaller = await HasInstallers(client, repository, release),
+            ID = release.Id,
+            IsPreRelease = release.Prerelease,
+            Name = release.Name,
+            Organization = organization,
+            RepositoryID = repository.Id,
+            Version = Version.Parse(release.TagName),
           });
         }
       }
+    }
+
+    public async Task<string> LoadInstaller(Abstractions.Models.Release release) {
+      GitHubClient client = new(new ProductHeaderValue(release.Organization));
+      IReadOnlyList<ReleaseAsset> assets = await client.Repository.Release.GetAllAssets(release.RepositoryID, release.ID);
+
+      string filePath = string.Empty;
+
+      if (assets.FirstOrDefault(x => x.Name.EndsWith(".msi") || x.Name.EndsWith(".exe")) is ReleaseAsset asset) {
+        filePath = $"C:\\Temporary\\{asset.Name}";
+        using HttpClient httpClient = new();
+        await httpClient.DownloadFileAsync(new Uri(asset.BrowserDownloadUrl), filePath);
+      }
+
+      return filePath;
     }
 
     private async Task<bool> HasInstallers(GitHubClient client, Repository repository, Release release) {
