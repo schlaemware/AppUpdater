@@ -1,4 +1,5 @@
-﻿using SW.AppUpdater.Abstractions.Contracts;
+﻿using System.Runtime.CompilerServices;
+using SW.AppUpdater.Abstractions.Contracts;
 using SW.AppUpdater.GitHub;
 
 internal class Program {
